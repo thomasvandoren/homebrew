@@ -22,7 +22,10 @@ class Chapel < Formula
     # https://gist.github.com/DomT4/90dbcabcc15e5d4f786d
     # https://github.com/Homebrew/homebrew/pull/35166
     cd libexec do
-      system "make", "all"
+      # build_configs.py is a wrapper around make. In this case, it calls make
+      # several times with different environment settings corresponding to
+      # different configurations.
+      system "python", "util/build_configs.py", "--comm=none,gasnet", "--task=qthreads,fifo",
     end
 
     prefix.install_metafiles
