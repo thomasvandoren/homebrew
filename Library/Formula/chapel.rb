@@ -27,6 +27,21 @@ class Chapel < Formula
 
     prefix.install_metafiles
 
+    # TODO: Fix chpldoc install -- currently broken. Probably need to ensure
+    #       python pkgs are correctly installed, or ?
+    #       (thomasvandoren, 2015-01-08)
+    #
+    # $ chpldoc examples/hello.chpl
+    # Traceback (most recent call last):
+    # File "/usr/local/Cellar/chapel/1.10.0/libexec/util/docs/chpldoc2html", line 152, in <module>
+    # from creoleparser import creole2html
+    # ImportError: No module named creoleparser
+    #
+    # error: chpldoc2html failed when creating your --docs output.
+    # Make sure the Creoleparser and Genshi Python packages are in your path.
+    # One way to do so is: 'make -C $CHPL_HOME/third-party creoleparser'
+    # [docs.cpp:90]
+
     bin.install Dir[libexec/"bin/darwin/*"]
     bin.env_script_all_files libexec/"bin/darwin/", :CHPL_HOME => libexec
     man1.install_symlink Dir["#{libexec}/man/man1/*.1"]
