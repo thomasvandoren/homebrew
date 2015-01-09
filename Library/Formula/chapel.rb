@@ -25,6 +25,8 @@ class Chapel < Formula
       # build_configs.py is a wrapper around make. In this case, it calls make
       # several times with different environment settings corresponding to
       # different configurations.
+      #
+      # FIXME: This won't work until 1.11 (April 2015).
       system "python", "util/build_configs.py", "--comm=none,gasnet", "--task=qthreads,fifo",
     end
 
