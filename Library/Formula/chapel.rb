@@ -27,7 +27,8 @@ class Chapel < Formula
 
     prefix.install_metafiles
 
-    (bin/"chpl").write_env_script libexec/"bin/darwin/chpl", :CHPL_HOME => libexec
+    bin.install Dir[libexec/"bin/darwin/*"]
+    bin.env_script_all_files libexec/"bin/darwin/", :CHPL_HOME => libexec
     man1.install_symlink Dir["#{libexec}/man/man1/*.1"]
   end
 
